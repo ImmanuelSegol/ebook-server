@@ -9,17 +9,18 @@ const eBook = new Schema({
     creator: User,
     title:{
         type: String,
-        isRequired:true,
+        require:true,
     },
     date: {
         type:String,
-        isRequired:true,
+        require:false,
         default:moment().format('LL'),
     },
     details:{
         type:String,
-        isRequired:true,
+        require:true,
     },
+    pages:[[{ type: Schema.Types.ObjectId, ref: 'Page' }]]
 });
 
 const Ebooks = mongoose.model('Ebook',eBook); 

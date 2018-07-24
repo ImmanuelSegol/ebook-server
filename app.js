@@ -1,22 +1,24 @@
 const createError = require('http-errors');
-const MongoClient = require('mongodb').MongoClient;
 const express = require('express');
+const mongoose = require('mongoose');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const app = express();
-
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
-const  url = 'mongodb://localhost:27017/test';
-MongoClient.connect(url,{ useNewUrlParser: true }).then((err,db) => {
-  console.log('connected to db!');
-})
-.catch(err => console.log(err)
-)
 
+
+const url = 'mongodb://localhost:27017/ebookDB';
+const connect = mongoose.connect(url,{useNewUrlParser: true});
+
+connect.then(db => {
+  console.log("Connected on to DB");
+  
+}, err => console.log(err))
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -6,25 +6,25 @@ const Schema = mongoose.Schema;
 const page = Schema({
         title:{
             type:String,
-            isRequired:true,
+            required:true,
         },
         date:{
             type:String,
-            isRequired:true,
+            required:true,
             default:moment().format('LL')
         },
         details:{
             type:String,
-            isRequired:true,
+            required:true,
         },
         type:{
             type:String,
-            isRequired:true,
+            required:true,
             enum:['PDF','SWF','Aframe','Video']
         },
         link:{
             type:String,
-            isRequired:true,
+            required:true,
         },
     }
 );

@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
-const Users = require('../model/user');
+const bodyParser = require('body-parser');
+const Users = require('../model/user.js');
 
 const usersRouter = express.Router();
 
@@ -30,9 +30,15 @@ usersRouter.route('/')
     },err => next(err))
     .catch(err => next(err))
 })
-.delete((req,res) => {
-    res.statusCode = 200;
-    res.end('DELETE is not supported');
+.delete((req,res,next) => {
+    Users.deleteMany({})
+    .then(users => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type','application/json');
+        res.json(users)
+    },err => next(err)).catch(err => next(err))
+    //res.statusCode = 200;
+    //res.end('DELETE is not supported');
 });
 
 
