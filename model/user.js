@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const uuidv1 = require('uuid/v1');
 const Schema = mongoose.Schema;
 
 
-const user = Schema({
-    id:{
+const user = new Schema({
+    userName:{
         type: String,
         isRequired: true,
+        unique: true,
     },
     firstName:{
         type: String,
@@ -18,6 +18,6 @@ const user = Schema({
     },
 });
 
-const User = mongoose.model('User',user);
+const Users = mongoose.model('User', user);
 
-model.exports = User;
+module.exports = Users;

@@ -1,11 +1,23 @@
 var createError = require('http-errors');
+const MongoClient = require('mongodb').MongoClient;
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+
+const  url = 'mongodb://localhost:27017/ebookdb';
+MongoClient.connect(url, (err,db) =>{
+  if(err){
+    console.error(err);
+  }else{
+    console.log('Connected to DB');
+  }
+})
+
+
 
 var app = express();
 

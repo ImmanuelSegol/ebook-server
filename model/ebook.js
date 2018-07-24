@@ -7,11 +7,6 @@ const User = require('./user.js')
 
 const eBook = new Schema({
     creator: User,
-    id: {
-        type: String,
-        isRequired:true,
-        default: uuidv1(),
-    },
     title:{
         type: String,
         isRequired:true,
