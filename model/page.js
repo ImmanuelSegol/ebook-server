@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const Schema = mongoose.Schema;
 
+const SubPages = require('./subPage'); 
 
 const page = Schema({
+        parentId:{
+            type:Schema.Types.ObjectId,
+            ref:'Ebook',
+            required:true,
+        },
         title:{
             type:String,
             required:true,
@@ -26,8 +32,10 @@ const page = Schema({
             type:String,
             required:true,
         },
+        subPages:[SubPages]
     }
 );
 
 
-const Pages = mongoose.Model('page',page);
+const Pages = mongoose.Model('Page',page);
+

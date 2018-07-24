@@ -1,26 +1,30 @@
 const mongoose = require('mongoose');
-const uuidv1 = require('uuid/v1');
+const moment = require('moment');
 const Schema = mongoose.Schema;
 
-const User = require('./user.js')
+
 
 
 const eBook = new Schema({
-    creator: User,
+    creator:{
+        type: Schema.Types.ObjectId,
+        ref:'User',
+        required: true
+    },
     title:{
         type: String,
-        require:true,
+        required: true
     },
     date: {
         type:String,
-        require:false,
+        required: true,
         default:moment().format('LL'),
     },
     details:{
         type:String,
-        require:true,
+        required: true,
     },
-    pages:[[{ type: Schema.Types.ObjectId, ref: 'Page' }]]
+    pages:[{ type: Schema.Types.ObjectId, ref: 'Page',required: true }]
 });
 
 const Ebooks = mongoose.model('Ebook',eBook); 

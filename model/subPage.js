@@ -3,25 +3,26 @@ const Schema = mongoose.Schema;
 
 
 const subPage = Schema({
-    //parentId:1234,
     title:{
         type: String,
-        isRequired:true,
+        required:true,
     },
     details: {
         type: String,
-        isRequired:true,
+        required:true,
     },
     type:{
         type:String,
-        isRequired:true,
+        required:true,
         enum:['PDF','SWF','Aframe','Video']
     },
     link:{
         type:String,
-        isRequired:true,
+        required:true,
     }
 });
 
 
-const SubPages = mongoose.Model('subPage',subPage);
+const SubPages = mongoose.Model('SubPage',subPage);
+
+module.exports = SubPages;
