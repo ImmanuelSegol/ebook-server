@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema; 
 
 
-const subPage = Schema({
+const subPageSchema = new Schema({
     title:{
         type: String,
         required:true,
@@ -11,7 +11,7 @@ const subPage = Schema({
         type: String,
         required:true,
     },
-    type:{
+    mediaType:{
         type:String,
         required:true,
         enum:['PDF','SWF','Aframe','Video']
@@ -23,6 +23,6 @@ const subPage = Schema({
 });
 
 
-const SubPages = mongoose.Model('SubPage',subPage);
+const SubPages = mongoose.model('SubPage',subPageSchema);
 
-module.exports = SubPages;
+module.exports = subPageSchema;

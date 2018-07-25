@@ -23,6 +23,7 @@ ebooksRouter.route('/')
 .post((req,res,next) => {
     Ebooks.create(req.body)
     .then(book => {
+        console.log(book.creator);
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         res.json(book);

@@ -42,4 +42,16 @@ usersRouter.route('/')
 });
 
 
+usersRouter.route('/:id')
+.get((req,res,next) => {
+    Users.findById(req.params.id)
+    .then(user => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type','application/json');
+        res.json(user)
+    },err => next(err))
+    .catch(err => next(err))
+});
+
+
 module.exports = usersRouter;

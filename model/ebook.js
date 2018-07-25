@@ -2,14 +2,13 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const Schema = mongoose.Schema;
 
+const pages = require('./page');
 
 
-
-const eBook = new Schema({
+const eBookSchema = new Schema({
     creator:{
-        type: Schema.Types.ObjectId,
-        ref:'User',
-        required: true
+        type: String,
+        required:true
     },
     title:{
         type: String,
@@ -24,9 +23,9 @@ const eBook = new Schema({
         type:String,
         required: true,
     },
-    pages:[{ type: Schema.Types.ObjectId, ref: 'Page',required: true }]
+    pages:[pages],
 });
 
-const Ebooks = mongoose.model('Ebook',eBook); 
+const Ebooks = mongoose.model('Ebook',eBookSchema); 
 
 module.exports = Ebooks;

@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
+const subPages = require('./subPage.js');
 const Schema = mongoose.Schema;
 
-const SubPages = require('./subPage'); 
-
-const page = Schema({
+const pageSchema = new Schema({
         parentId:{
-            type:Schema.Types.ObjectId,
-            ref:'Ebook',
+            type:String,
             required:true,
         },
         title:{
@@ -23,7 +21,7 @@ const page = Schema({
             type:String,
             required:true,
         },
-        type:{
+        mediaype:{
             type:String,
             required:true,
             enum:['PDF','SWF','Aframe','Video']
@@ -32,10 +30,12 @@ const page = Schema({
             type:String,
             required:true,
         },
-        subPages:[SubPages]
+        subPage:[subPages],
     }
 );
 
 
-const Pages = mongoose.Model('Page',page);
+const Pages = mongoose.model('Page',pageSchema);
+
+module.exports = pageSchema;
 
