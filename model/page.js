@@ -4,10 +4,10 @@ const subPages = require('./subPage.js');
 const Schema = mongoose.Schema;
 
 const pageSchema = new Schema({
-        /*parentId:{
-            type:String,
-            required:true,
-        },*/
+        parentPage:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Ebook'
+        },
         title:{
             type:String,
             required:true,
@@ -21,7 +21,7 @@ const pageSchema = new Schema({
             type:String,
             required:true,
         },
-        mediaype:{
+        mediatype:{
             type:String,
             required:true,
             enum:['PDF','SWF','Aframe','Video']

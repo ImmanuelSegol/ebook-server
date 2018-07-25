@@ -9,7 +9,8 @@ pagesRouter.use(express.json());
 
 pagesRouter.route('/')
 .get((req,res,next) => {
-    Pages.get({})
+    Pages.find({})
+    .populate('parentPage')
     .then(all => {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -25,7 +26,7 @@ pagesRouter.route('/')
         res.json(page);
     },err => next(err))
     .catch(err => next(err))
-});
+})
 
 module.exports = pagesRouter;
 
