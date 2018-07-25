@@ -25,4 +25,4 @@ const subPageSchema = new Schema({
 
 const SubPages = mongoose.model('SubPage',subPageSchema);
 
-module.exports = subPageSchema;
+module.exports = SubPages;

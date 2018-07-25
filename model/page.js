@@ -4,10 +4,10 @@ const subPages = require('./subPage.js');
 const Schema = mongoose.Schema;
 
 const pageSchema = new Schema({
-        parentId:{
+        /*parentId:{
             type:String,
             required:true,
-        },
+        },*/
         title:{
             type:String,
             required:true,
@@ -30,12 +30,11 @@ const pageSchema = new Schema({
             type:String,
             required:true,
         },
-        subPage:[subPages],
     }
 );
 
 
 const Pages = mongoose.model('Page',pageSchema);
 
-module.exports = pageSchema;
+module.exports = Pages;
 

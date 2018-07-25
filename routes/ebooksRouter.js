@@ -9,6 +9,7 @@ ebooksRouter.use(express.json());
 ebooksRouter.route('/')
 .get((req,res,next) => {
     Ebooks.find({})
+    .populate('creator')
     .then(books => {
         res.statusCode =200;
         res.setHeader('Content-Type', 'application/json');
