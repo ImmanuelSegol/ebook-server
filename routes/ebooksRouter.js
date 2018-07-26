@@ -41,5 +41,32 @@ ebooksRouter.route('/')
     .catch(err => next(err))
 });
 
+ebooksRouter.route('/:id')
+.get((req,res,next) => {
+    Ebooks.findById(req.params.id)
+    .populate('creator')
+    .then(user => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type','application/json');
+        res.json(user)
+    },err => next(err))
+    .catch(err => next(err))
+})
+.post((req,res) => {
+    res.statusCode = 200;
+    res.end('POST NOT ALLOWED');
+})
+.put((req,res,next) => {
+    Ebooks.findByIdAndUpdate(req.params.id,req.body)
+    .then(update => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(update)
+    },err => next(err))
+    .catch(err => next(err))
+})
+.delete((req,res,next) => {
+    Ebooks.findByIdAndRemove
+})
 
 module.exports = ebooksRouter;
